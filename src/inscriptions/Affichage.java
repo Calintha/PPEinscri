@@ -27,7 +27,7 @@ public class Affichage {
 		for (Competition c : inscriptions.getCompetitions()) {
 			compL.add(c.getNom());
 		}
-		// On créé le menu
+		// On créer le menu
 		List<String> menu = new List<String>("Liste des compétitions", new ListData<String>() {
 			// La liste des compétitions
 			@Override
@@ -51,9 +51,12 @@ public class Affichage {
 		menu.start();
 	}
 
+	// Menu dans competition
 	public Menu gererCompetition(Inscriptions inscriptions) {
 		Menu compMenu = new Menu("Gérer les compétitions");
 		compMenu.add(new Option("Créer une compétition", "c", new Action() {
+			
+			// Si on choisit de créer une competition
 			@Override
 			public void optionSelected() {
 				String nom = InOut.getString("Choississez le nom de la compétition : ");
@@ -83,6 +86,8 @@ public class Affichage {
 			}
 		}));
 		compMenu.add(new Option("Supprimer une compétition", "s", new Action() {
+			
+			// Si on choisit de supprimer une competition
 			@Override
 			public void optionSelected() {
 				int nbr = 0;
@@ -107,9 +112,13 @@ public class Affichage {
 		return compMenu;
 	}
 
+	
+	//Menu des inscrits
 	public Menu listeInscrits(Inscriptions inscriptions) {
 		Menu inscrits = new Menu("Liste des inscrits");
 		inscrits.add(new Option("Ajouter une personne", "a", new Action() {
+			
+			//Si on choisit d'ajouter une personne
 			@Override
 			public void optionSelected() {
 				String prenom = InOut.getString("Choississez le prénom : ");
@@ -123,17 +132,21 @@ public class Affichage {
 			}
 		}));
 		inscrits.add(new Option("Ajouter une équipe", "e", new Action() {
+			
+			//Si on choisit d'ajouter une équipe
 			@Override
 			public void optionSelected() {
 				String nom = InOut.getString("Choississez le nom de l'équipe : ");
 				if (nom.trim().equals("")) {
-					System.out.println("Le prénom, nom ou email ne sont pas valides");
+					System.out.println("Le nom de l'équipe n'est pas valide");
 				} else {
 					inscriptions.createEquipe(nom);
 				}
 			}
 		}));
 		inscrits.add(new Option("Ajouter un membre à une équipe", "t", new Action() {
+			
+			//Si on choisit d'ajouter un inscrit dans une équipe
 			@Override
 			public void optionSelected() {
 				int nbr = 0;
@@ -168,6 +181,8 @@ public class Affichage {
 			}
 		}));
 		inscrits.add(new Option("Supprimer une personne", "s", new Action() {
+			
+			//Si on choisit de supprimer une personne inscrite, la liste des inscrit apparait
 			@Override
 			public void optionSelected() {
 				int nbr = 0;
@@ -188,6 +203,8 @@ public class Affichage {
 			}
 		}));
 		inscrits.add(new Option("Supprimer une équipe", "r", new Action() {
+			
+			//Si on choisir de supprimer une équipe
 			@Override
 			public void optionSelected() {
 				int nbr = 0;
@@ -208,6 +225,8 @@ public class Affichage {
 			}
 		}));
 		inscrits.add(new Option("Supprimer un membre d'une équipe", "u", new Action() {
+			
+			//Si on choisit de supprimer un membre d'une équipe
 			@Override
 			public void optionSelected() {
 				int nbr = 0;
@@ -242,6 +261,8 @@ public class Affichage {
 			}
 		}));
 		inscrits.add(new Option("Afficher la liste des personnes", "l", new Action() {
+			
+			//Si on choisit d'afficher toute les personnes
 			@Override
 			public void optionSelected() {
 				int nbr = 0;
@@ -252,6 +273,8 @@ public class Affichage {
 			}
 		}));
 		inscrits.add(new Option("Afficher la liste des équipes", "q", new Action() {
+			
+			//Si on choisit d'afficher la liste des équipes
 			@Override
 			public void optionSelected() {
 				int nbr = 0;
@@ -266,6 +289,8 @@ public class Affichage {
 		return inscrits;
 	}
 
+	
+	//Menu des compétitions qui s'ajoute au fur et à mesure dans le menu principal
 	public Option optionsCompetition(String nom, Inscriptions inscriptions) {
 		for (Competition c : inscriptions.getCompetitions()) {
 			if (c.getNom() == nom) {
@@ -279,6 +304,8 @@ public class Affichage {
 		options.add("Afficher les participants à la compétition");
 		List<String> menu = new List<String>(nom + " " + (compTmp.estEnEquipe() ? "(en équipe)" : "(pas en équipe)"),
 				new ListData<String>() {
+			
+			//Menu lorsqu'on va dans une compétition
 					@Override
 					public java.util.List<String> getList() {
 						return options;
@@ -359,6 +386,7 @@ public class Affichage {
 		return menu;
 	}
 
+	//Affichage lorsque les ajouts sont effectués ou non
 	public void afficherAjout(boolean a) {
 		if (a) {
 			System.out.println("Ajout effectué");
@@ -367,6 +395,8 @@ public class Affichage {
 		}
 	}
 
+	
+	//Affichage lorsque les suppresions sont effectués ou non
 	public void afficherSuppression(boolean s) {
 		if (s) {
 			System.out.println("Suppression effectuée");
