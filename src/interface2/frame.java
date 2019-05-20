@@ -4,8 +4,6 @@ package interface2;
 import javax.swing.JFrame;
  class frame {
 
-
-	 
 	private NavBar frame;
 	
 // frame est la derniere class appelé dans la creation de l'objet
@@ -18,19 +16,11 @@ import javax.swing.JFrame;
 		    frame.getNavBar().getPages().setVisible(true);
 		  }
 
-
 		public void setFrame(NavBar frame) {
 			this.frame = frame;
 		}
 
-
 		public NavBar getFrame() {
 			return frame;
 		}
-
-
-
-	
-
-	
 }
